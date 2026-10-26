@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion - Gestion de stock</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-page">
+  <div class="login-box">
+    <div class="login-brand">
+      <div class="logo">S</div>
+      <h1>Gestion de stock</h1>
+      <p>Consommables &amp; approvisionnements</p>
+    </div>
+
+    <form id="login-form" autocomplete="off">
+      <label for="identifiant">Matricule ou e-mail</label>
+      <input type="text" id="identifiant" placeholder="admin@entreprise.local" required>
+
+      <label for="motDePasse">Mot de passe</label>
+      <input type="password" id="motDePasse" placeholder="••••••••" required>
+
+      <div id="login-error" class="form-error" hidden></div>
+
+      <button type="submit" class="btn btn-primary btn-block" id="login-btn">Se connecter</button>
+    </form>
+
+    <div class="login-hints">
+      <p>Comptes de démonstration :</p>
+      <code>admin@entreprise.local / admin123</code>
+      <code>stock@entreprise.local / stock123</code>
+      <code>resp@entreprise.local / resp123</code>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('login-form');
+    const err = document.getElementById('login-error');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      err.hidden = true;
+      const btn = document.getElementById('login-btn');
+      btn.disabled = true;
+      btn.textContent = 'Connexion...';
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            identifiant: document.getElementById('identifiant').value,
+            motDePasse: document.getElementById('motDePasse').value,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Connexion impossible');
+        location.href = '/app.html#/dashboard';
+      } catch (ex) {
+        err.textContent = ex.message;
+        err.hidden = false;
+        btn.disabled = false;
+        btn.textContent = 'Se connecter';
+      }
+    });
+  </script>
+</body>
+</html>

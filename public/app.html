@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion de stock des consommables</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo">S</div>
+        <div>
+          <strong>Stock</strong>
+          <span>Consommables</span>
+        </div>
+      </div>
+      <nav id="nav"></nav>
+      <div class="sidebar-footer" id="sidebar-user"></div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <button class="btn-icon" id="toggle-sidebar" title="Menu">☰</button>
+        <h2 id="page-title">Tableau de bord</h2>
+        <div class="topbar-right">
+          <a href="#/alerts" class="badge-alert" id="alerts-badge" title="Alertes de stock" hidden></a>
+          <span id="topbar-user" class="topbar-user"></span>
+          <button class="btn btn-sm" id="btn-logout">Déconnexion</button>
+        </div>
+      </header>
+
+      <main class="content" id="content"></main>
+    </div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root"></div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

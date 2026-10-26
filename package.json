@@ -1,0 +1,23 @@
+{
+  "name": "gestion-stock-consommables",
+  "version": "1.0.0",
+  "description": "Application de gestion de stock de consommables (auth, mouvements, alertes, approvisionnements, rapports)",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "init-db": "node src/db/init.js",
+    "check": "node scripts/check.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "nodemailer": "^10.2.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
